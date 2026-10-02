@@ -1,0 +1,28 @@
+# Python virtual environment
+venv/
+.venv/
+
+# Python cache
+__pycache__/
+*.py[cod]
+
+# Environment variables and secrets
+.env
+.env.*
+
+# IDE and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary files
+*.tmp
+*.swp
+
+# Generated traffic data and packet captures
+logs/*
+data/*
+
+# Allow documentation and small safe examples
+!logs/README.md
+!data/README.md

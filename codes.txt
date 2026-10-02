@@ -1,0 +1,38 @@
+
+------------NORMAL TESTING-------------------------
+sudo ./venv/bin/python detection/live_detector.py
+
+
+sudo ./venv/bin/python -m capture.packet_sniffer
+
+
+./venv/bin/python detection/test_attack_analyzer.py
+
+
+------------------------------------------------------------------------------------------------------------------
+
+** For the IO interface new code 
+--->  sudo FIREWALL_INTERFACE=lo ./venv/bin/python detection/live_detector.py 
+
+
+
+
+** for IP adress 8080 (To start local service in terminal 1)    -- >   python3 -m http.server 8081 --bind 127.0.0.1
+					    (  In terminal 2 )  -->  python3 -m http.server 8080 --bind 127.0.0.1
+					
+					
+					
+** to test the virtual firewall 
+---> ./venv/bin/python -m firewall.test_decision_engine
+
+
+
+---------------------------------------------------------------------------------------------------------------------
+
+python3 -m http.server 8080 --bind 127.0.0.1
+---------Another terminal---------
+  ping -c 10 google.com
+  curl https://example.com
+
+
+
