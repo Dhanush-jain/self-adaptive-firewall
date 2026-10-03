@@ -1,5 +1,5 @@
 
-------------NORMAL TESTING-------------------------
+------------NORMAL TESTING --(Not with IO interface)-------------------------
 sudo ./venv/bin/python detection/live_detector.py
 
 
@@ -12,13 +12,19 @@ sudo ./venv/bin/python -m capture.packet_sniffer
 ------------------------------------------------------------------------------------------------------------------
 
 ** For the IO interface new code 
---->  sudo FIREWALL_INTERFACE=lo ./venv/bin/python detection/live_detector.py 
+--->  sudo FIREWALL_INTERFACE=lo ./venv/bin/python -m detection.live_detector
 
 
 
 
 ** for IP adress 8080 (To start local service in terminal 1)    -- >   python3 -m http.server 8081 --bind 127.0.0.1
 					    (  In terminal 2 )  -->  python3 -m http.server 8080 --bind 127.0.0.1
+			
+
+** For Nmap running 5 times 
+--> for i in {1..5}; do
+    nmap -sT -p 8000-8100 127.0.0.1
+done
 					
 					
 					
@@ -29,10 +35,12 @@ sudo ./venv/bin/python -m capture.packet_sniffer
 
 ---------------------------------------------------------------------------------------------------------------------
 
-python3 -m http.server 8080 --bind 127.0.0.1
+
 ---------Another terminal---------
   ping -c 10 google.com
   curl https://example.com
+
+
 
 
 

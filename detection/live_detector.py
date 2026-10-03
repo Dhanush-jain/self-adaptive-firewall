@@ -1,3 +1,4 @@
+
 from scapy.all import sniff, IP, TCP, UDP
 from pathlib import Path
 from datetime import datetime
@@ -5,6 +6,7 @@ import pandas as pd
 import joblib
 import os
 
+from firewall.firewall_controller import execute_action
 from detection.attack_analyzer import analyze_attack
 from detection.risk_engine import calculate_risk
 from firewall.decision_engine import make_firewall_decision
@@ -274,6 +276,7 @@ while True:
     )
 
 
+
     # ======================================
     # DISPLAY TRAFFIC FEATURES
     # ======================================
@@ -361,3 +364,5 @@ while True:
         f"Window Time   : "
         f"{start_time.strftime('%H:%M:%S')}"
     )
+    execute_action(firewall_result)
+
