@@ -5,9 +5,7 @@ def analyze_attack(features):
     risk = 0
 
 
-    # --------------------------------
-    # High number of destination ports
-    # --------------------------------
+
 
     if features["unique_destination_ports"] >= 15:
 
@@ -18,9 +16,6 @@ def analyze_attack(features):
         )
 
 
-    # --------------------------------
-    # Large number of SYN packets
-    # --------------------------------
 
     if features["tcp_syn_count"] >= 20:
 
@@ -31,10 +26,6 @@ def analyze_attack(features):
         )
 
 
-    # --------------------------------
-    # High packet rate
-    # --------------------------------
-
     if features["packets_per_second"] >= 50:
 
         risk += 25
@@ -44,9 +35,6 @@ def analyze_attack(features):
         )
 
 
-    # --------------------------------
-    # Determine behavior
-    # --------------------------------
 
     if (
         features["unique_destination_ports"] >= 15
@@ -65,9 +53,7 @@ def analyze_attack(features):
         attack_type = "Unknown"
 
 
-    # --------------------------------
-    # Limit risk
-    # --------------------------------
+   
 
     risk = min(risk, 100)
 

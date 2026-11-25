@@ -9,6 +9,15 @@ sudo ./venv/bin/python -m capture.packet_sniffer
 ./venv/bin/python detection/test_attack_analyzer.py
 
 
+#### NEW LIVE DETECTOR  --> 		sudo -E ./venv/bin/python -m detection.live_detector 
+
+### Firewall block list manager  -->  	sudo ./venv/bin/python firewall/blocklist_manager.py
+
+#### TO ckeck blocked IP address --->   sudo nft list set inet ai_firewall blocked_sources
+
+
+
+
 ------------------------------------------------------------------------------------------------------------------
 
 ** For the IO interface new code 
@@ -18,7 +27,7 @@ sudo ./venv/bin/python -m capture.packet_sniffer
 
 
 ** for IP adress 8080 (To start local service in terminal 1)    -- >   python3 -m http.server 8081 --bind 127.0.0.1
-					    (  In terminal 2 )  -->  python3 -m http.server 8080 --bind 127.0.0.1
+					    (  In terminal 2 )  -->  	python3 -m http.server 8080 --bind 127.0.0.1
 			
 
 ** For Nmap running 5 times 
@@ -29,8 +38,11 @@ done
 					
 					
 ** to test the virtual firewall 
----> ./venv/bin/python -m firewall.test_decision_engine
+--->  ./venv/bin/python -m firewall.test_decision_engine
 
+
+** To get the details of basline 
+--->  ./venv/bin/python detection/baseline_summary.py
 
 
 ---------------------------------------------------------------------------------------------------------------------
@@ -44,3 +56,13 @@ done
 
 
 
+
+
+######################################################################################################
+
+** Name space live detector -->  sudo ip netns exec firewall env FIREWALL_ENFORCEMENT=1 FIREWALL_INTERFACE=veth-fw-in ./venv/bin/python -m detection.live_detector
+
+** Suspecious traffic --> sudo ip netns exec attacker ./venv/bin/python -c "from scapy.all import IP,TCP,send; packets=[IP(src='10.10.1.2',dst='10.10.2.2')/TCP(sport=50000+i,dport=i,flags='S') for i in range(1,31)]; send(packets, inter=0.02, verbose=False); print('Generated 30 TCP SYN packets across 30 destination ports')"
+
+
+** TO check nftable --> sudo ip netns exec firewall nft list set inet ai_firewall temporary_blocked_sources
